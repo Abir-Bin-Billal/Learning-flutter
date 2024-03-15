@@ -9,43 +9,31 @@ class HomeApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Center(
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: GridView.count(
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 5,
-            crossAxisCount: 2,
-            children: [
-              Container(
-                height: 200,
-                width: 150,
-                color: Colors.blue,
-              ),
-              Container(
-                height: 200,
-                width: 150,
-                color: Colors.blue,
-              ),
-              Container(
-                height: 200,
-                width: 150,
-                color: Colors.blue,
-              ),
-              Container(
-                height: 200,
-                width: 150,
-                color: Colors.blue,
-              ),
-              Container(
-                height: 200,
-                width: 150,
-                color: Colors.blue,
-              ),     
-            ],
-            ),
-        ),
-      ) ,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: 
+          Container(color: Colors.green,)          
+          ),
+          Expanded(
+             flex: 2,
+             child: Container(color: Colors.blue
+          ,
+          )),
+          Expanded( 
+            flex: 1,
+          child: Container(color: Colors.red
+          ,
+          )),
+          Expanded(
+            flex: 5,
+            child: Container(color: Colors.yellow
+          ,
+          )),
+
+        ],
+        )
     );
   }
 }
