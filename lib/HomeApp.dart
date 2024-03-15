@@ -41,13 +41,7 @@ class HomeApp extends StatelessWidget{
                 height: 200,
                 width: 150,
                 color: Colors.blue,
-              ),
-              Container(
-                height: 200,
-                width: 150,
-                color: Colors.blue,
-              ),
-          
+              ),     
             ],
             ),
         ),
