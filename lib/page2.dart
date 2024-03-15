@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class page1 extends StatelessWidget {
-  const page1({super.key});
+class page2 extends StatelessWidget {
+  const page2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class page1 extends StatelessWidget {
         child: Container(
           height: 200,
           width: 150,
-          color: Colors.orange,
+          color: Colors.blue,
         ),
       ),
     );
