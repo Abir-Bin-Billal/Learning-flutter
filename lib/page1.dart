@@ -5,8 +5,13 @@ class page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(color: Colors.white,),
+    return Center(
+      child: Container(
+        child: Hero(tag: "add"
+        
+        ,
+         child: Icon(Icons.message , size: 250 , color: Colors.green,)),
+      ),
     );
   }
 }
