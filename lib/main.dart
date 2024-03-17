@@ -7,46 +7,39 @@ import 'package:my_calculator/page4.dart';
 void main(){
   runApp(Myapp());
 }
-class Myapp extends StatefulWidget {
+class Myapp extends StatelessWidget {
   const Myapp({super.key});
-
-  @override
-  State<Myapp> createState() => _MyappState();
-}
-
-class _MyappState extends State<Myapp> {
-var _currentindex = 0;
-final pages = [
-page1(),
-page2(),
-page3(),
-page4(),
-];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        bottomNavigationBar:BottomNavigationBar(
-          
-          currentIndex: _currentindex,
-          items: [
+      home: DefaultTabController(
         
-          BottomNavigationBarItem( backgroundColor: Colors.black,  icon: Icon(Icons.home),label: "Home" ),
-           BottomNavigationBarItem(backgroundColor: Colors.black,  icon: Icon(Icons.message),label: "message"),
-            BottomNavigationBarItem(backgroundColor: Colors.black, icon: Icon(Icons.call),label: "Call"),
-             BottomNavigationBarItem(backgroundColor: Colors.black,icon: Icon(Icons.contact_emergency),label: "Contact"),
-
-        ],
-        onTap: (index){
-          setState(() {
-            _currentindex=index;
-          });
-        },
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Facebook"),
+            backgroundColor: Colors.blue,
+            bottom: TabBar(
+              labelColor: Colors.white,
+              unselectedLabelColor: Color.fromARGB(255, 221, 18, 18),
+              tabs: [
+              Tab(icon: Icon(Icons.home),text: "Home",),
+              Tab(icon: Icon(Icons.people),text: "Home",),
+              Tab(icon: Icon(Icons.video_call),text: "Home",),
+              Tab(icon: Icon(Icons.more),text: "Home",)
+            ]),
+          ),
+          body: TabBarView(children: [
+            page1(),
+            page2(),
+            page3(),
+            page4()
+          ]),
+          backgroundColor: Colors.black,
         ),
-        body: pages[_currentindex],
-      ),
+      )
     );
   }
 }
