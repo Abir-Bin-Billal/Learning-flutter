@@ -1,8 +1,11 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
 void main(){
   runApp(Myapp());
 }
-
 
 class Myapp extends StatefulWidget {
   const Myapp({super.key});
@@ -12,57 +15,54 @@ class Myapp extends StatefulWidget {
 }
 
 class _MyappState extends State<Myapp> {
-  Widget addDetails(String name , String des){
-    return ListTile(
-      title: Text(name),
-      subtitle: Text(des),
-      textColor: Colors.black,
-      leading: CircleAvatar(
-        child: Text(name[0]),
-      ),
-
-    );
-  }
   @override
+
+
+File? _image;
+Future getImage() async{
+  final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  if (image == null) {
+    return;
+  }
+  final ImageTemporary = File(image.path);
+  setState(() {
+    this._image = ImageTemporary;
+  });
+}
+
+
+
+
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 200,
-            backgroundColor: Colors.blue,
-            flexibleSpace: FlexibleSpaceBar(title: Text("Contact",style: TextStyle(color: Colors.white),)),
-
-          ),
-          SliverList(delegate: SliverChildListDelegate(<Widget> [
-            addDetails("abir", "Te has no"),
-            addDetails("arosh", "THeas no"),
-            addDetails("adib", "THeras no"),
-            addDetails("fjoajfo", "TH has no"),
-            addDetails("fjdofo", "THeras no"),
-            addDetails("wiomnf", "THerhas no"),
-            addDetails("gkiek", "THere s no"),
-            addDetails("ejdfn", "THerhas no"),
-            addDetails("kdfdo", "THeras no"),
-            addDetails("kodfk", "THereas no"),
-            addDetails("abfgrtir", "THere has no"),
-            addDetails("abifgr", "THeras no"),
-            addDetails("sgfabir", "THe has no"),
-            addDetails("rtrsabir", "THe s no"),
-            addDetails("trtabir", "THer no"),
-            addDetails("rgabir", "THe has no"),
-            addDetails("yrtyabir", "THehas no"),
-            addDetails("rtrabir", "THe ha no"),
-            addDetails("trabir", "THere has no"),
-
-          ]))
+        body: Column(
+          children: [
+            Container(
+              height: 500,
+              width: double.infinity,
+              color: Colors.blue,
+              child: _image==null?Text("no imaees"):Image.network(_image!.path)
+            
+              
+            ),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              
+              children: [
+                FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera),),
+                FloatingActionButton(onPressed: (){getImage();} , child: Icon(Icons.browse_gallery),)
+              ],
+            )
           ],
         ),
+    
       ),
     );
     
   }
+
 }
