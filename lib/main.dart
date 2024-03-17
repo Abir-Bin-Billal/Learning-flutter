@@ -29,6 +29,16 @@ Future getImage() async{
     this._image = ImageTemporary;
   });
 }
+Future getCamera() async{
+  final image = await ImagePicker().pickImage(source: ImageSource.camera);
+  if (image == null) {
+    return;
+  }
+  final ImageTemporary = File(image.path);
+  setState(() {
+    this._image = ImageTemporary;
+  });
+}
 
 
 
@@ -44,7 +54,7 @@ Future getImage() async{
               height: 500,
               width: double.infinity,
               color: Colors.blue,
-              child: _image==null?Text("no imaees"):Image.network(_image!.path)
+              child: _image==null?Text("no imaees"):Image.network(_image!.path , fit: BoxFit.cover,)
             
               
             ),
@@ -53,7 +63,7 @@ Future getImage() async{
               mainAxisAlignment: MainAxisAlignment.center,
               
               children: [
-                FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera),),
+                FloatingActionButton(onPressed: (){getCamera();}, child: Icon(Icons.camera),),
                 FloatingActionButton(onPressed: (){getImage();} , child: Icon(Icons.browse_gallery),)
               ],
             )
