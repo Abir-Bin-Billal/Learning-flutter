@@ -1,45 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:my_calculator/page1.dart';
-import 'package:my_calculator/page2.dart';
-import 'package:my_calculator/page3.dart';
-import 'package:my_calculator/page4.dart';
-
 void main(){
   runApp(Myapp());
 }
-class Myapp extends StatelessWidget {
+
+
+class Myapp extends StatefulWidget {
   const Myapp({super.key});
 
+  @override
+  State<Myapp> createState() => _MyappState();
+}
+
+class _MyappState extends State<Myapp> {
+  Widget addDetails(String name , String des){
+    return ListTile(
+      title: Text(name),
+      subtitle: Text(des),
+      textColor: Colors.black,
+      leading: CircleAvatar(
+        child: Text(name[0]),
+      ),
+
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        
-        length: 4,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("Facebook"),
+      home: Scaffold(
+        body: CustomScrollView(
+          slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 200,
             backgroundColor: Colors.blue,
-            bottom: TabBar(
-              labelColor: Colors.white,
-              unselectedLabelColor: Color.fromARGB(255, 221, 18, 18),
-              tabs: [
-              Tab(icon: Icon(Icons.home),text: "Home",),
-              Tab(icon: Icon(Icons.people),text: "Home",),
-              Tab(icon: Icon(Icons.video_call),text: "Home",),
-              Tab(icon: Icon(Icons.more),text: "Home",)
-            ]),
+            flexibleSpace: FlexibleSpaceBar(title: Text("Contact",style: TextStyle(color: Colors.white),)),
+
           ),
-          body: TabBarView(children: [
-            page1(),
-            page2(),
-            page3(),
-            page4()
-          ]),
-          backgroundColor: Colors.black,
+          SliverList(delegate: SliverChildListDelegate(<Widget> [
+            addDetails("abir", "Te has no"),
+            addDetails("arosh", "THeas no"),
+            addDetails("adib", "THeras no"),
+            addDetails("fjoajfo", "TH has no"),
+            addDetails("fjdofo", "THeras no"),
+            addDetails("wiomnf", "THerhas no"),
+            addDetails("gkiek", "THere s no"),
+            addDetails("ejdfn", "THerhas no"),
+            addDetails("kdfdo", "THeras no"),
+            addDetails("kodfk", "THereas no"),
+            addDetails("abfgrtir", "THere has no"),
+            addDetails("abifgr", "THeras no"),
+            addDetails("sgfabir", "THe has no"),
+            addDetails("rtrsabir", "THe s no"),
+            addDetails("trtabir", "THer no"),
+            addDetails("rgabir", "THe has no"),
+            addDetails("yrtyabir", "THehas no"),
+            addDetails("rtrabir", "THe ha no"),
+            addDetails("trabir", "THere has no"),
+
+          ]))
+          ],
         ),
-      )
+      ),
     );
+    
   }
 }
