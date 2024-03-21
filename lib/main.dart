@@ -19,38 +19,33 @@ class Myapp extends StatelessWidget {
 }
 
 class home extends StatelessWidget {
-  const home({super.key});
+  home({super.key});
+
+ButtonStyle _buttonStyle = ElevatedButton.styleFrom(backgroundColor: Colors.blue);
+
+MyDialouge(context){
+  return showDialog(
+context: context,
+builder: (BuildContext context) {
+  return Expanded(child: AlertDialog(
+      title: Text('Alert!'),
+      content: Text("Do you want to delete?"),
+      actions: [
+        ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("No") , style: _buttonStyle,),
+        ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Yes") , style: ElevatedButton.styleFrom(backgroundColor: Colors.red),),
+      ],
+
+  ));
+} );
+ 
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Center(
-          child: ElevatedButton(onPressed: (){showModalBottomSheet<void>(context: context, builder: (BuildContext context){
-            return Container(
-              height: 250,
-              
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text("Abir"),
-                    subtitle: Text("The litti-boy"),
-                    leading: Icon(Icons.home),
-                  ),ListTile(
-                    title: Text("Jarif"),
-                    subtitle: Text("The starboy"),
-                    leading: Icon(Icons.home),
-                  ),ListTile(
-                    title: Text("aadeeb"),
-                    subtitle: Text("The bundasting"),
-                    leading: Icon(Icons.home),
-                  ),
-                  ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text("Back"))
-                ],
-              ),
-            );
-
-
-          });} , child: Text("Click me!"),),
+        child: ElevatedButton(onPressed: (){MyDialouge(context);}, child: Text("Submit") ,),
       ),
     );
   }
