@@ -30,6 +30,7 @@ environment:
 dependencies:
   path_provider: ^2.1.2
   image_picker: ^1.0.7
+  curved_labeled_navigation_bar: ^2.0.2
 
   
   flutter:
@@ -53,6 +54,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+ 
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

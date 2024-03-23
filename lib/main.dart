@@ -1,9 +1,6 @@
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 
-void main(){
+void main() {
   runApp(Myapp());
 }
 
@@ -12,40 +9,72 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return MaterialApp(debugShowCheckedModeBanner: false,
-     home:  home());
-     
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+    );
   }
 }
 
-class home extends StatelessWidget {
-  home({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
-ButtonStyle _buttonStyle = ElevatedButton.styleFrom(backgroundColor: Colors.blue);
-
-MyDialouge(context){
-  return showDialog(
-context: context,
-builder: (BuildContext context) {
-  return Expanded(child: AlertDialog(
-      title: Text('Alert!'),
-      content: Text("Do you want to delete?"),
-      actions: [
-        ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("No") , style: _buttonStyle,),
-        ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Yes") , style: ElevatedButton.styleFrom(backgroundColor: Colors.red),),
-      ],
-
-  ));
-} );
- 
+  @override
+  State<Home> createState() => _HomeState();
 }
 
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Center(
-        child: ElevatedButton(onPressed: (){MyDialouge(context);}, child: Text("Submit") ,),
+        child: ElevatedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Stack(       
+                            alignment: Alignment.topCenter,
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                height: 250,
+                                width: 250,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "Alert Dialog",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.",
+                                      style: TextStyle(fontSize: 15),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                  top: -70,
+                                  child: CircleAvatar(
+                                    radius:50,
+                                    child: Image.network("https://cdn.pixabay.com/photo/2017/07/08/18/54/decor-2485268_640.png")
+                                  ))
+                            ],
+                          )),
+                    );
+                  });
+            },
+            child: Text("Click me!")),
       ),
     );
   }
