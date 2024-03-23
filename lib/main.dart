@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: ElevatedButton(
             onPressed: () {
@@ -36,7 +37,7 @@ class _HomeState extends State<Home> {
                     return Dialog(
                       child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Stack(       
+                          child: Stack(
                             alignment: Alignment.topCenter,
                             clipBehavior: Clip.none,
                             children: [
@@ -59,16 +60,41 @@ class _HomeState extends State<Home> {
                                     Text(
                                       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.",
                                       style: TextStyle(fontSize: 15),
-                                    )
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("No"),
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.red),
+                                        ),
+                                        SizedBox(
+                                          width: 7,
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("Yes"),
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
                               Positioned(
                                   top: -70,
                                   child: CircleAvatar(
-                                    radius:50,
-                                    child: Image.network("https://cdn.pixabay.com/photo/2017/07/08/18/54/decor-2485268_640.png")
-                                  ))
+                                      radius: 50,
+                                      child: Image.network(
+                                          "https://cdn.pixabay.com/photo/2017/07/08/18/54/decor-2485268_640.png")))
                             ],
                           )),
                     );
