@@ -25,28 +25,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  MySnackbar(String message, BuildContext context) {
-    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      duration: Duration(seconds: 5),
-      action: SnackBarAction(label: "Ok", onPressed: () {}),
-    ));
-  }
 
+  var _value = 1.0;
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              Fluttertoast.showToast(
-                  msg: "Toast added successfully",
-                  toastLength: Toast.LENGTH_LONG,
-                  backgroundColor: Colors.blue,
-                  textColor: Colors.white,
-                  gravity: ToastGravity.CENTER);
-            },
-            child: Text('Click me')),
-      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("i wil inrease with the slider" , style: TextStyle(fontSize: _value),),
+            SizedBox(height: 50,),
+            Slider(min: 0, max: 36,value: _value , onChanged: (value){
+              setState(() {
+                _value=value;
+              });
+            }),
+          ],
+        )
+      
     );
   }
 }
