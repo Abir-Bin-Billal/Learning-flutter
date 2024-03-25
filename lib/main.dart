@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(Myapp());
@@ -24,18 +25,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  MySnackbar(String message ,BuildContext context){
-  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(message) , 
-    duration: Duration(seconds: 5),
-    action: SnackBarAction(label: "Ok", onPressed: (){}),
-    
+  MySnackbar(String message, BuildContext context) {
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      duration: Duration(seconds: 5),
+      action: SnackBarAction(label: "Ok", onPressed: () {}),
     ));
-}
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: (){MySnackbar("Are you sure?", context);}, child: Text('Click me')),
+        child: ElevatedButton(
+            onPressed: () {
+              Fluttertoast.showToast(
+                  msg: "Toast added successfully",
+                  toastLength: Toast.LENGTH_LONG,
+                  backgroundColor: Colors.blue,
+                  textColor: Colors.white,
+                  gravity: ToastGravity.CENTER);
+            },
+            child: Text('Click me')),
       ),
     );
   }
