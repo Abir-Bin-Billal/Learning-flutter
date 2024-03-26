@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+final list = [
+  "one",
+  "Two",
+  "Three",
+  "Four",
+];
+
 void main() {
   runApp(Myapp());
 }
@@ -25,23 +32,31 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-
-  var _value = 1.0;
+  var selected = list.first;
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: Center(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("i wil inrease with the slider" , style: TextStyle(fontSize: _value),),
-            SizedBox(height: 50,),
-            Slider(min: 0, max: 36,value: _value , onChanged: (value){
-              setState(() {
-                _value=value;
-              });
-            }),
-          ],
-        )
-      
-    );
+        children: [
+          DropdownButton(
+            value: selected,
+            icon: Icon(Icons.arrow_drop_down),
+              
+              onChanged: ( String? value){
+                setState(() {
+                  selected = value!;
+                });
+              },
+             items: list.map<DropdownMenuItem<String>>((String value){
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+             }).toList(),
+              )
+        ],
+      ),
+    ));
   }
 }
