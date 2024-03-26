@@ -36,27 +36,18 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          DropdownButton(
-            value: selected,
-            icon: Icon(Icons.arrow_drop_down),
-              
-              onChanged: ( String? value){
-                setState(() {
-                  selected = value!;
-                });
-              },
-             items: list.map<DropdownMenuItem<String>>((String value){
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-             }).toList(),
-              )
-        ],
-      ),
-    ));
+          child: Dismissible(key: ValueKey("123"), 
+          child: ListTile(
+            title: Text("Left or right to remove"),
+            subtitle: Text("NOthing"),
+            
+          ),
+          background: Container(
+            color: Colors.green,
+            child: Icon(Icons.delete),
+          ))
+        ),
+        
+        );
   }
 }
