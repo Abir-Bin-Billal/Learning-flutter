@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-final list = [
-  "one",
-  "Two",
-  "Three",
-  "Four",
-];
+
 
 void main() {
   runApp(Myapp());
@@ -33,29 +28,67 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  var selected = list.first;
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        bottomNavigationBar: Container(
-          color: Colors.black,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
-            child: GNav(
-              gap: 10,
-              padding: EdgeInsets.all(15.0),
-              backgroundColor: Colors.black,
-              color: Colors.white,
-              tabBackgroundColor: Colors.white,
-              tabs: [
-              GButton(icon: Icons.home , text: "Home",),
-              GButton(icon: Icons.favorite , text: "Favourite",),
-              GButton(icon: Icons.message,text: "Message",),
-              GButton(icon: Icons.contact_mail, text: "Contact",)
-            ]),
-          ),
+        appBar: AppBar(
+          title: Text("My app"),
         ),
-        
+        body:DismissibleExample(),
         );
+  }
+}
+
+class DismissibleExample extends StatefulWidget {
+   DismissibleExample({super.key});
+
+  @override
+  State<DismissibleExample> createState() => _DismissibleExampleState();
+}
+
+class _DismissibleExampleState extends State<DismissibleExample> {
+List list = [
+  {'title' : 'ListTile 1'},
+  {'title' : 'ListTile 2'},
+  {'title' : 'ListTile 3'},
+  {'title' : 'ListTile 4'},
+  {'title' : 'ListTile 5'},
+  {'title' : 'ListTile 6'},
+  {'title' : 'ListTile 7'},
+  {'title' : 'ListTile 8'},
+  {'title' : 'ListTile 9'},
+  {'title' : 'ListTile 10'},
+  {'title' : 'ListTile 11'},
+  {'title' : 'ListTile 12'},
+  {'title' : 'ListTile 13'},
+  {'title' : 'ListTile 14'},
+  {'title' : 'ListTile 15'},
+];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (context , index){
+        return Dismissible(
+            onDismissed: (direction) => setState(() {
+              list.removeAt(index);
+            }),
+            background: Container(
+              color: Colors.green,
+              child: Icon(Icons.delete),
+            ),
+            key: ValueKey(list[index]),
+            
+          
+          
+          child: ListTile(
+            title: Text(list[index]['title']),
+            shape: Border.all(color: Colors.green),
+            
+          ));
+        
+      }
+      
+      );
   }
 }
