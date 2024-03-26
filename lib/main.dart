@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 final list = [
   "one",
@@ -35,17 +36,24 @@ class _HomeState extends State<Home> {
   var selected = list.first;
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-          child: Dismissible(key: ValueKey("123"), 
-          child: ListTile(
-            title: Text("Left or right to remove"),
-            subtitle: Text("NOthing"),
-            
+        backgroundColor: Colors.white,
+        bottomNavigationBar: Container(
+          color: Colors.black,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
+            child: GNav(
+              gap: 10,
+              padding: EdgeInsets.all(15.0),
+              backgroundColor: Colors.black,
+              color: Colors.white,
+              tabBackgroundColor: Colors.white,
+              tabs: [
+              GButton(icon: Icons.home , text: "Home",),
+              GButton(icon: Icons.favorite , text: "Favourite",),
+              GButton(icon: Icons.message,text: "Message",),
+              GButton(icon: Icons.contact_mail, text: "Contact",)
+            ]),
           ),
-          background: Container(
-            color: Colors.green,
-            child: Icon(Icons.delete),
-          ))
         ),
         
         );
