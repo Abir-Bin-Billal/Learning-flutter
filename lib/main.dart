@@ -34,16 +34,18 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("JSON Data Fetching"),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        setState(() {
+          _value=!_value;
+        });
+      }),
       body: Center(
-        child: Column(
-          children: [
-            Text(_value == false? "Unchecked" : "Checked"),
-          Checkbox(value: _value, onChanged: (bool? val){
-            setState(() {
-              _value = val!;
-            });
-          })
-          ],
+        child : AnimatedContainer( duration: Duration(seconds: 4), 
+        child: Container(
+          height: _value==false? 150:350,
+          width: _value==false? 150:350,
+          color: Colors.blue,
+        ),
         )
       ),
       
