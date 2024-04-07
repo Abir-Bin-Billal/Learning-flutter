@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_calculator/page_one.dart';
+import 'package:my_calculator/page_two.dart';
 
 void main(){
   runApp(MyApp());
@@ -27,28 +29,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _value = false;
+  final pages = [
+    one(),
+    two()
+  ];
+  var _index = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("JSON Data Fetching"),
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        setState(() {
-          _value=!_value;
-        });
-      }),
-      body: Center(
-        child : AnimatedContainer( duration: Duration(seconds: 4), 
-        child: Container(
-          height: _value==false? 150:350,
-          width: _value==false? 150:350,
-          color: Colors.blue,
-        ),
-        )
-      ),
+    return SafeArea(child: 
+    Scaffold(
+      appBar: AppBar(title: Text("App Bar")),
+      backgroundColor: Colors.black,
+      body: Row(
+        children: [
+          NavigationRail(
+            labelType: NavigationRailLabelType.all,
+            onDestinationSelected: (int val){
+              setState(() {
+                val = _index;
+              });
+            },
+        backgroundColor: Colors.black,
+        destinations: [
+        NavigationRailDestination(icon: Icon(Icons.wifi), label: Text("Wifi" , style: TextStyle(color: Colors.white),)),
+        NavigationRailDestination(icon: Icon(Icons.home), label: Text("Home")),
+        
+     
+      ], selectedIndex: _index),
       
-    );
+     Expanded(child: Container(
+        child: pages[_index],
+      ))
+        ],
+      )
+    ));
   }
 }
